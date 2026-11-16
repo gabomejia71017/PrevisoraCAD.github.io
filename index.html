@@ -60,14 +60,16 @@
         <li>
           <h3>Descarga el CAD o prepara el correo</h3>
           <p><b>Descargar Formato CAD</b> genera el PDF listo para archivar.</p>
-          <p><b>Preparar correo en Outlook</b> descarga un archivo <code>.eml</code>. Al abrirlo en Outlook de escritorio queda listo para enviar, con asunto, cuerpo y todos los adjuntos.</p>
+          <p><b>Preparar correo en Outlook</b> descarga un archivo <code>.eml</code>. Al abrirlo en Outlook de escritorio queda listo para enviar, con asunto, cuerpo y todos los adjuntos: el Formato CAD en PDF y todos los archivos de la carpeta.</p>
         </li>
       </ol>
 
       <div class="tips">
         <h3>Ten en cuenta</h3>
         <ul>
+          <li><b>Correo:</b> lleva adjuntos el Formato CAD en <b>PDF</b> y <b>todos</b> los archivos de la carpeta. No tienes que volver a adjuntar nada.</li>
           <li><b>Folios:</b> se cuentan todos los archivos de la carpeta, incluidas las subcarpetas. Saca lo que no deba ir.</li>
+          <li><b>CAD anterior:</b> si la carpeta ya tiene un <code>FORMATO_CAD…pdf</code>, se ignora: no cuenta como folio ni se adjunta dos veces.</li>
           <li><b>PD / SD:</b> es <b>PD</b> (primer documento) si el certificado es <b>0</b>; en cualquier otro caso es <b>SD</b>.</li>
           <li><b>Fecha de entrega:</b> se pone la fecha de hoy automáticamente.</li>
           <li><b>Abrir el correo:</b> la primera vez, haz clic derecho sobre el <code>.eml</code> → <i>Abrir con</i> → <b>Outlook</b> → "Usar siempre esta aplicación".</li>
@@ -103,6 +105,14 @@
       </div>
 
       <div id="results" class="results"></div>
+
+      <section class="panel samples" aria-labelledby="samples-title">
+        <div class="samples-head">
+          <h2 id="samples-title">Carpetas de prueba</h2>
+          <p>Úsalas para conocer la herramienta sin tus documentos. Tienen <b>datos ficticios</b>: no corresponden a pólizas ni clientes reales.</p>
+        </div>
+        <ul id="samples-list" class="samples-list"></ul>
+      </section>
     </section>
   </main>
 

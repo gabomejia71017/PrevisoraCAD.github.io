@@ -20,6 +20,13 @@ Todo el procesamiento ocurre en el navegador de quien la usa: los documentos **n
 
 > Para que el `.eml` se abra directo en Outlook: en Windows, clic derecho sobre el archivo → **Abrir con** → **Outlook** → marca "Usar siempre esta aplicación". Así se configura una sola vez.
 
+## Carpetas de prueba
+Al final de la página hay cuatro carpetas de ejemplo: Automóviles, Todo Riesgo Contratista, Previhogar y RC Hidrocarburos. Contienen **datos ficticios** y sirven para probar la herramienta sin usar documentos de clientes reales.
+- **Probar aquí** carga la carpeta directamente en la página.
+- **Descargar .zip** descarga la carpeta. Descomprímela y arrástrala para probar todo el proceso completo.
+
+Se generan con `tools/make_samples.mjs` (pdf-lib). Las carpetas de prueba con documentos reales **no deben subirse** a este repositorio, porque la página es pública.
+
 ## Reglas (las mismas del aplicativo original en Python)
 
 | Dato | De dónde sale |
@@ -27,7 +34,7 @@ Todo el procesamiento ocurre en el navegador de quien la usa: los documentos **n
 | N° póliza | Primer número de 6 o más dígitos debajo de "PÓLIZA N°" en la página 1 del PDF `+POLIZA…` |
 | Certificado | Número debajo de "N° CERTIFICADO" en la página 1 |
 | Ramo | Texto entre "SEGURO" y "PÓLIZA" |
-| Folios | Cantidad de archivos de la carpeta. Se ignoran los archivos ocultos, `Thumbs.db`, `desktop.ini` y los temporales `~$` |
+| Folios | Cantidad de archivos de la carpeta. Se ignoran los archivos ocultos, `Thumbs.db`, `desktop.ini`, los temporales `~$` y los `FORMATO_CAD…pdf` generados antes |
 | Tipo de trámite | `PD` si el certificado es 0; `SD` en cualquier otro caso |
 | Fecha de entrega | La fecha de hoy, en hora de Colombia |
 
@@ -66,6 +73,8 @@ js/metrics.js            Anchos de letra de Calibri y Verdana (para alinear igua
 js/eml.js                Construcción del correo .eml con adjuntos
 assets/plantilla_cad.pdf Formato CAD en blanco (generado desde el PDF exportado por Excel)
 vendor/                  pdf.js (Apache 2.0) y pdf-lib (MIT)
+assets/ejemplos/         Carpetas de prueba con datos ficticios (+ .zip y manifest.json)
+tools/                   Scripts que generan la plantilla con fuentes y las carpetas de prueba
 vercel.json              Configuración de Vercel
 ```
 

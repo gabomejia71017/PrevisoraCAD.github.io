@@ -1,0 +1,57 @@
+[
+  {
+    "carpeta": "EJEMPLO AU 9000101",
+    "ramo": "AUTOMOVILES",
+    "poliza": "9000101",
+    "certificado": "0",
+    "archivos": [
+      "+POLIZA 9000101-0.pdf",
+      "Cupon de pago AU 9000101 (ejemplo).pdf",
+      "Cedula tomador (ejemplo).pdf",
+      "Tarjeta de propiedad (ejemplo).pdf"
+    ],
+    "zip": "EJEMPLO AU 9000101.zip"
+  },
+  {
+    "carpeta": "EJEMPLO TRC 9000202",
+    "ramo": "TODO RIESGO CONTRATISTA",
+    "poliza": "9000202",
+    "certificado": "3",
+    "archivos": [
+      "+POLIZA 9000202-3.pdf",
+      "Cupon de pago TRC 9000202 (ejemplo).pdf",
+      "RUT (ejemplo).pdf",
+      "SARLAFT (ejemplo).pdf",
+      "Camara de comercio (ejemplo).pdf",
+      "Aceptacion slip (ejemplo).pdf"
+    ],
+    "zip": "EJEMPLO TRC 9000202.zip"
+  },
+  {
+    "carpeta": "EJEMPLO PREVIHOGAR 9000303",
+    "ramo": "PREVIHOGAR",
+    "poliza": "9000303",
+    "certificado": "7",
+    "archivos": [
+      "+POLIZA 9000303-7.pdf",
+      "Cupon de pago PH 9000303 (ejemplo).pdf",
+      "Solicitud de renovacion (ejemplo).pdf",
+      "SARLAFT (ejemplo).pdf"
+    ],
+    "zip": "EJEMPLO PREVIHOGAR 9000303.zip"
+  },
+  {
+    "carpeta": "EJEMPLO RC HIDROCARBUROS 9000404",
+    "ramo": "RESPONSABILIDAD CIVIL",
+    "poliza": "9000404",
+    "certificado": "1",
+    "archivos": [
+      "+POLIZA 9000404-1.pdf",
+      "Cupon de pago RCHD 9000404 (ejemplo).pdf",
+      "Formato RC hidrocarburos (ejemplo).pdf",
+      "Reporte de inspeccion (ejemplo).pdf",
+      "Cedula (ejemplo).pdf"
+    ],
+    "zip": "EJEMPLO RC HIDROCARBUROS 9000404.zip"
+  }
+]

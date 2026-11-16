@@ -6,7 +6,8 @@ import { construirEml } from './eml.js';
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL('../vendor/pdf.worker.min.mjs', import.meta.url).href;
 
 const LIMITE_CORREO_MB = 20;
-const IGNORAR = /^(\.|~\$)|^(thumbs\.db|desktop\.ini)$/i;
+// Archivos ocultos/temporales de Windows y Formatos CAD generados antes (el CAD nuevo se adjunta aparte)
+const IGNORAR = /^(\.|~\$)|^(thumbs\.db|desktop\.ini)$|^FORMATO[_ ]CAD.*\.pdf$/i;
 
 const $ = sel => document.querySelector(sel);
 const dropZone = $('#drop-zone');
@@ -347,3 +348,59 @@ async function copiarTexto(card) {
   }
   setTimeout(() => (btn.textContent = 'Copiar texto'), 1500);
 }
+
+// ---------- Carpetas de prueba (datos ficticios) ----------
+const ICONO_CARPETA = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M3 6a2 2 0 0 1 2-2h4.6l2 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>';
+const rutaEjemplo = (...partes) => 'assets/ejemplos/' + partes.map(encodeURIComponent).join('/');
+
+async function cargarEjemplos() {
+  const lista = document.getElementById('samples-list');
+  if (!lista) return;
+  try {
+    const res = await fetch('assets/ejemplos/manifest.json');
+    if (!res.ok) throw new Error(res.status);
+    const ejemplos = await res.json();
+    for (const ej of ejemplos) {
+      const li = document.createElement('li');
+      li.className = 'sample';
+      li.innerHTML = `
+        <div class="sample-name">${ICONO_CARPETA}<span></span></div>
+        <div class="sample-meta"></div>
+        <div class="sample-actions">
+          <button class="btn sm primary" type="button">Probar aquí</button>
+          <a class="btn sm ghost" download>Descargar .zip</a>
+        </div>`;
+      li.querySelector('.sample-name span').textContent = ej.carpeta;
+      li.querySelector('.sample-name span').title = ej.carpeta;
+      li.querySelector('.sample-meta').textContent = `${ej.ramo} · ${ej.archivos.length} archivos`;
+      const zip = li.querySelector('a');
+      zip.href = rutaEjemplo(ej.zip);
+      zip.setAttribute('download', ej.zip);
+      const btn = li.querySelector('button');
+      btn.addEventListener('click', async () => {
+        btn.disabled = true;
+        try {
+          const entradas = await Promise.all(ej.archivos.map(async nombre => {
+            const r = await fetch(rutaEjemplo(ej.carpeta, nombre));
+            if (!r.ok) throw new Error(`No se pudo cargar ${nombre}`);
+            const blob = await r.blob();
+            const file = new File([blob], nombre, { type: blob.type || 'application/pdf' });
+            return { file, path: `${ej.carpeta}/${nombre}` };
+          }));
+          procesarCarpeta(ej.carpeta, entradas);
+          results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } catch (err) {
+          console.error(err);
+          alert('No se pudo cargar la carpeta de prueba.');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+      lista.append(li);
+    }
+  } catch (err) {
+    console.error(err);
+    lista.closest('.samples')?.classList.add('hidden');
+  }
+}
+cargarEjemplos();
