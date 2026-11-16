@@ -62,6 +62,7 @@ styles.css               Estilos
 js/app.js                Lectura de carpetas, interfaz y flujo
 js/extract.js            Extracción de póliza, certificado y ramo
 js/cad.js                Escritura de los datos sobre la plantilla del Formato CAD
+js/metrics.js            Anchos de letra de Calibri y Verdana (para alinear igual que Excel)
 js/eml.js                Construcción del correo .eml con adjuntos
 assets/plantilla_cad.pdf Formato CAD en blanco (generado desde el PDF exportado por Excel)
 vendor/                  pdf.js (Apache 2.0) y pdf-lib (MIT)
@@ -78,5 +79,5 @@ Luego entra a <http://localhost:8000>.
 ## Limitaciones conocidas
 - El `.eml` se abre como borrador en **Outlook de escritorio clásico**. El "nuevo Outlook" y Outlook en el navegador pueden abrirlo solo para lectura. En esos casos usa **Copiar texto** y adjunta los archivos manualmente.
 - Outlook suele rechazar correos de más de 20–25 MB. La página muestra un aviso si los adjuntos superan 20 MB.
-- El texto del CAD se escribe en Helvetica, una letra muy parecida a la que usaba Excel (Calibri/Verdana). El resto del formato es exactamente el que exportaba Excel.
+- El CAD usa las mismas fuentes y tamaños de `FORMATO CAD.xlsx`: Calibri 11 para la póliza y el ramo, Verdana 8 para el certificado y los folios, y Verdana 8 negrita para el trámite, el nombre y la fecha. Las fuentes van incrustadas dentro de `assets/plantilla_cad.pdf` (solo los caracteres necesarios, igual que hace Excel al exportar). Si un texto no cabe en su celda, se corta en el borde, como en Excel.
 - El drag & drop de carpetas funciona en Chrome, Edge y Firefox de escritorio. En celular solo funciona el botón de selección, si el navegador permite elegir carpetas.
